@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<FlowPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.via.view.VinylListController"
+            prefHeight="500.0" prefWidth="600.0">
+    <padding>
+        <Insets top="10" left="10" right="10" bottom="10" />
+    </padding>
+    <VBox spacing="10">
+        <HBox spacing="10">
+            <ListView onMouseClicked="#onMouseClicked" fx:id="vinylList" prefHeight="372.0" prefWidth="200.0"/>
+            <TextArea fx:id="logArea" prefHeight="372.0" prefWidth="368.0"/>
+        </HBox>
+        <Button text="Change" onAction="#onChangeClicked"/>
+    </VBox>
+</FlowPane>

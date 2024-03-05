@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.via.view.ChangeStateController"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label fx:id="titleLabel" layoutX="14.0" layoutY="54.0" text="Title:" />
+    <Label fx:id="yearLabel" layoutX="14.0" layoutY="74.0" text="Year:" />
+    <FlowPane layoutX="14.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0">
+        <Button fx:id="reserveButton" onAction="#onReserveClicked" text="Reserve" />
+        <Button fx:id="borrowButton" onAction="#onBorrowClicked" text="Borrow" />
+        <Button fx:id="deleteButton" onAction="#onDeleteClicked" text="delete" />
+        <Button fx:id="returnButton" onAction="#onReturnClicked" text="Return" />
+        <Button onAction="#onBackClicked" text="Back" />
+    </FlowPane>
+</AnchorPane>
