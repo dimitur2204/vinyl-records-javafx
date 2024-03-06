@@ -2,24 +2,24 @@ package dk.via.model;
 
 public class Available implements LendingState {
     @Override
-    public void borrow(Vinyl vinyl, Person borrower) {
-        vinyl.setLendingState(new Borrowed());
+    public synchronized void borrow(Vinyl vinyl, Person borrower) {
         vinyl.setBorrower(borrower);
+        vinyl.setLendingState(new Borrowed());
     }
 
     @Override
-    public void reserve(Vinyl vinyl, Person reserver) {
-        vinyl.setLendingState(new Reserved());
+    public synchronized void reserve(Vinyl vinyl, Person reserver) {
         vinyl.setReserver(reserver);
+        vinyl.setLendingState(new Reserved());
     }
 
     @Override
-    public void returnVinyl(Vinyl vinyl) {
+    public synchronized void returnVinyl(Vinyl vinyl) {
         throw new IllegalStateException("Vinyl is not borrowed or reserved.");
     }
 
     @Override
-    public void remove(Vinyl vinyl) throws IllegalStateException {
+    public synchronized void remove(Vinyl vinyl) throws IllegalStateException {
         vinyl.setLendingState(new Removed());
     }
 

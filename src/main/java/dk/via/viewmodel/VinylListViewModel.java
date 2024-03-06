@@ -1,6 +1,7 @@
 package dk.via.viewmodel;
 
 import dk.via.model.ModelManager;
+import dk.via.model.Person;
 import dk.via.model.Vinyl;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -43,7 +44,15 @@ public class VinylListViewModel implements PropertyChangeListener {
                 logArea.set(evt.getNewValue().toString());
                 return;
             }
-            this.logArea.set(logArea.get() + "\n" + evt.getNewValue());
+            Object evtValue = evt.getNewValue();
+            if(evtValue instanceof IllegalStateException e){
+                logArea.set(logArea.get() + "\n" + e.getMessage());
+                return;
+            }
+            if(evtValue instanceof Vinyl vinyl){
+                logArea.set(logArea.get() + "\n" + evt.getPropertyName() + " " + vinyl);
+                return;
+            }
         });
     }
 }

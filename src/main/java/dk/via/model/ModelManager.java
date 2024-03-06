@@ -26,33 +26,32 @@ public class ModelManager {
     }
 
     public void reserveVinyl(int index, Person person) {
-        Vinyl vinyl = vinylList.getVinyls().get(index);
-        vinyl.getLendingState().reserve(vinyl, person);
         try {
+            Vinyl vinyl = vinylList.getVinyls().get(index);
+            vinyl.getLendingState().reserve(vinyl, person);
             support.firePropertyChange("ReserveVinyl", null, vinyl);
         } catch (IllegalStateException e) {
-            support.firePropertyChange("ReserveVinyl", null, vinyl);
+            support.firePropertyChange("ErrorReserveVinyl", null, e);
         }
     }
 
     public void borrowVinyl(int index, Person person) {
-        Vinyl vinyl = vinylList.getVinyls().get(index);
         try {
+            Vinyl vinyl = vinylList.getVinyls().get(index);
             vinyl.getLendingState().borrow(vinyl, person);
             support.firePropertyChange("BorrowVinyl", null, vinyl);
         } catch (IllegalStateException e) {
-            support.firePropertyChange("BorrowVinyl", null, vinyl);
+            support.firePropertyChange("ErrorBorrowVinyl", null, e);
         }
-        support.firePropertyChange("BorrowVinyl", null, vinyl);
     }
 
     public void returnVinyl(int index) {
-        Vinyl vinyl = vinylList.getVinyls().get(index);
-        vinyl.getLendingState().returnVinyl(vinyl);
         try {
+            Vinyl vinyl = vinylList.getVinyls().get(index);
+            vinyl.getLendingState().returnVinyl(vinyl);
             support.firePropertyChange("ReturnVinyl", null, vinyl);
         } catch (IllegalStateException e) {
-            support.firePropertyChange("ReturnVinyl", null, vinyl);
+            support.firePropertyChange("ErrorReturnVinyl", null, e);
         }
     }
 

@@ -33,7 +33,7 @@ public class Vinyl {
     public LendingState getLendingState() {
         return lendingState;
     }
-    public void setLendingState(LendingState lendingState) {
+    public synchronized void setLendingState(LendingState lendingState) {
         if(lendingState instanceof Available) {
             if(shouldDelete) {
                 lendingState.remove(this);

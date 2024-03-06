@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 public class ChangeStateController {
+    @FXML
     private Button deleteButton;
     private ViewHandler viewHandler;
     private ChangeStateViewModel viewModel;

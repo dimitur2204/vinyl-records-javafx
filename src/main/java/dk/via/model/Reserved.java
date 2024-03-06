@@ -2,7 +2,7 @@ package dk.via.model;
 
 public class Reserved implements LendingState{
     @Override
-    public void borrow(Vinyl vinyl, Person borrower) {
+    public synchronized void borrow(Vinyl vinyl, Person borrower) {
         if (vinyl.getReserver() == borrower) {
             vinyl.setLendingState(new Borrowed());
             vinyl.setReserver(null);
@@ -12,17 +12,17 @@ public class Reserved implements LendingState{
     }
 
     @Override
-    public void reserve(Vinyl vinyl, Person reserver) {
+    public synchronized void reserve(Vinyl vinyl, Person reserver) {
         throw new IllegalStateException("Vinyl is already reserved");
     }
 
     @Override
-    public void returnVinyl(Vinyl vinyl) {
+    public synchronized void returnVinyl(Vinyl vinyl) {
         throw new IllegalStateException("Vinyl is not borrowed");
     }
 
     @Override
-    public void remove(Vinyl vinyl) throws IllegalStateException {
+    public synchronized void remove(Vinyl vinyl) throws IllegalStateException {
         vinyl.setShouldDeleteWhenAvaliable(true);
     }
 

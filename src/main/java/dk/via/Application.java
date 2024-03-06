@@ -22,6 +22,8 @@ public class Application extends javafx.application.Application {
         viewHandler.start(primaryStage);
         Thread t1 = new Thread(new ReserveVinyls(model));
         t1.start();
+        Thread t2 = new Thread(new ReserveVinyls2(model));
+        t2.start();
     }
 
     public static void main(String[] args) {

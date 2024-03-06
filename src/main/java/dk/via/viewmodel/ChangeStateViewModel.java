@@ -52,11 +52,11 @@ public class ChangeStateViewModel implements PropertyChangeListener {
             System.out.println(evt.getNewValue());
             Vinyl vinyl = evt.getNewValue() instanceof Vinyl ? (Vinyl) evt.getNewValue() : null;
             if (vinyl == null) {
-                throw new IllegalArgumentException("The property change event must contain a vinyl");
+                return;
             };
             if (evt.getPropertyName() == "BorrowVinyl") {
                 this.isDisabledBorrow.set(true);
-                if(vinyl.getBorrower() == ModelManager.UI_ACTOR) {
+                if(vinyl.getBorrower().equals(ModelManager.UI_ACTOR)) {
                     this.isDisabledReturn.set(false);
                     this.isDisabledReserve.set(true);
                 }
@@ -67,9 +67,8 @@ public class ChangeStateViewModel implements PropertyChangeListener {
             }
             if (evt.getPropertyName() == "ReserveVinyl") {
                 this.isDisabledReserve.set(true);
-                if(vinyl.getBorrower() == ModelManager.UI_ACTOR) {
+                if(vinyl.getReserver().equals(ModelManager.UI_ACTOR)) {
                     this.isDisabledBorrow.set(false);
-                    this.isDisabledReserve.set(false);
                 }
             }
             if (evt.getPropertyName() == "ReturnVinyl") {
